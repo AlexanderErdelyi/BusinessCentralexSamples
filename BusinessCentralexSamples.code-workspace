@@ -11,5 +11,31 @@
 		"al.packageCachePath": [
 			"..\\.alpackages"
 		]
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "Docker",
+				"request": "launch",
+				"type": "al",
+				"environmentType": "OnPrem",
+				"server": "http://BusinessCentralex",
+				"serverInstance": "BC",
+				"authentication": "UserPassword",
+				"startupObjectId": 50001,
+				"startupObjectType": "Page",
+				"breakOnError": "All",
+				"launchBrowser": true,
+				"enableLongRunningSqlStatements": true,
+				"enableSqlInformationDebugger": true,
+				"tenant": "default",
+				"usePublicURLFromServer": true,
+				"schemaUpdateMode": "ForceSync"
+			}
+		],
+		"compounds": []
 	}
+	
+	
 }
