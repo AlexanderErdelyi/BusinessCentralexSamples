@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": ".alpackages",
+		},
+		{
+			"path": "Regex"
+		}
+	],
+	"settings": {
+		"al.packageCachePath": [
+			"..\\.alpackages"
+		]
+	}
+}
