@@ -40,14 +40,33 @@ page 52000 "Regex Samples"
     {
         area(Processing)
         {
-            action(GetMatchBtn)
+            action(GetMatchAction)
             {
                 Caption = 'Get Match';
                 Image = TextFieldConfirm;
                 ToolTip = 'Executes the Get Match action.';
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
                 trigger OnAction()
                 begin
                     GetMatch();
+                end;
+            }
+            action(ConvertToTestMailAddressAction)
+            {
+                Caption = 'Convert To Test Mail Address';
+                Image = TextFieldConfirm;
+                ToolTip = 'Executes the Convert To Test Mail Address action.';
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                trigger OnAction()
+                var
+                    CreateTestMailAddress: Codeunit "Create Test Mail Address";
+                begin
+                    Rec."Text Output" := CreateTestMailAddress.ConvertEmailAddressToTest('businesscentralex@gmail.com', Rec."Text Input");
+                    Rec.Modify();
                 end;
             }
         }
@@ -59,13 +78,17 @@ page 52000 "Regex Samples"
         RegexOptions: Record "Regex Options" temporary;
         Matches: Record Matches temporary;
     begin
-        RegexOptions.IgnoreCase := true;
-        Regex.Regex('\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b', RegexOptions);
+        RegexOptions.IgnoreCase := Rec."Regex Ignore Case";
+        Regex.Regex(Rec."Regex Pattern", RegexOptions);
+        //Regex.Regex('\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b', RegexOptions);
         Regex.Match(Rec."Text Input", Matches);
 
         if Matches.FindSet() then
             repeat
-                Message(Matches.ReadValue());
+                Rec."Text Output" += Matches.ReadValue() + '\';
             until Matches.Next() = 0;
+        Rec.Modify();
+
+        Message((Rec."Text Output"));
     end;
 }
