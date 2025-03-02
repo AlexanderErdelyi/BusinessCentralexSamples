@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "Regex"
+		},
+		{
+			"path": "WordTemplateSignature"
 		}
 	],
 	"settings": {
@@ -23,7 +26,7 @@
 				"server": "http://BusinessCentralex",
 				"serverInstance": "BC",
 				"authentication": "UserPassword",
-				"startupObjectId": 50001,
+				"startupObjectId": 52000,
 				"startupObjectType": "Page",
 				"breakOnError": "All",
 				"launchBrowser": true,
@@ -32,6 +35,22 @@
 				"tenant": "default",
 				"usePublicURLFromServer": true,
 				"schemaUpdateMode": "ForceSync"
+			},
+			{
+				"name": "BusinessCentralex",
+				"type": "al",
+				"request": "launch",
+				"tenant": "6e14f2f1-d1d4-4932-9b15-975d68ecf305",
+				"environmentType": "Sandbox",
+				"environmentName": "BusinessCentralex",
+				"startupObjectId": 50001,
+				"breakOnError": "All",
+				"breakOnRecordWrite": "None",
+				"launchBrowser": true,
+				"enableSqlInformationDebugger": true,
+				"enableLongRunningSqlStatements": true,
+				"longRunningSqlStatementsThreshold": 500,
+				"numberOfSqlStatements": 10
 			}
 		],
 		"compounds": []
